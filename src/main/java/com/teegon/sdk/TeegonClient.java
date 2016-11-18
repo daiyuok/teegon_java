@@ -22,6 +22,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Date;
+
 import org.apache.log4j.Logger;
 
 /**
@@ -108,11 +109,7 @@ public class TeegonClient {
                 + urlencode(mixPostParams) + Constant.SEPARATOR
                 + secret;
 
-//        System.out.println("===========");
-//
-//        System.out.println(mixAllParams);
-//
-//        System.out.println("===========");
+        logger.debug("sing_str is " + mixAllParams);
 
         //加密签名
         try {
@@ -140,7 +137,8 @@ public class TeegonClient {
             String websocketUrl = urlParser.getWsUrl("");
             websocketUrl = websocketUrl + "?" + WebUtils.buildQuery(assembleParams(null, null, Constant.METHOD_GET, urlParser.getWsPath("")), Constant.DEFAULT_CHARSET);
 
-//            System.out.println(websocketUrl);
+            logger.debug(websocketUrl);
+
             webSocket = WebSockets.create(websocketUrl, new TeegonWebSocketHandler(), "char");
             webSocket.setBlockingMode(block_model);
             webSocket.connect();
@@ -170,7 +168,6 @@ public class TeegonClient {
      * 组装心跳信息数据
      */
     public String assembleHeatBeatsData() {
-//        System.out.println("======assembleHeatBeatsData=========");
         Command command = new Command(Constant.HeartBeatCmd, "", null);
         return packProtocol(command);
     }
@@ -230,19 +227,12 @@ public class TeegonClient {
      * 组装请求参数
      */
     public String packProtocol(Command command) {
-
-
-//        System.out.println(command.toString());
         HashMap<String, String> vals = new HashMap<String, String>();
         vals.put("method", command.getCommand());
         vals.put("app_key", appkey);
         vals.put("sign_time", String.valueOf(new Date().getTime() / 1000));
         vals.put("body", Base64.encodeBase64(command.toString()));
         vals.put("sign", sign(null, vals, null, "", ""));
-
-//        System.out.println(vals.get("body"));
-//
-//        System.out.println(vals.get("sign"));
 
         String data = "";
         try {
@@ -254,7 +244,6 @@ public class TeegonClient {
     }
 
     private class TeegonWebSocketHandler implements WebSocketHandler {
-        @Override
         public void onOpen(WebSocket webSocket) {
             if (msgHandler != null) {
 //                runHeatBeats();
@@ -262,7 +251,6 @@ public class TeegonClient {
             }
         }
 
-        @Override
         public void onMessage(WebSocket webSocket, Frame frame) {
             String msg = new String(frame.getContents().array(), 0, frame.getContents().array().length);
             ResponseMsg prismMsg = JSON.parseObject(msg, ResponseMsg.class);
@@ -271,14 +259,12 @@ public class TeegonClient {
             }
         }
 
-        @Override
         public void onError(WebSocket webSocket, WebSocketException e) {
             if (msgHandler != null) {
                 msgHandler.onError(webSocket, e);
             }
         }
 
-        @Override
         public void onClose(WebSocket webSocket) {
             if (msgHandler != null) {
                 msgHandler.onClose(webSocket);
