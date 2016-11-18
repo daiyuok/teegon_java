@@ -3,6 +3,5 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
     <mapping directory="$PROJECT_DIR$/../../prism-python" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../prism-java" vcs="Git" />
   </component>
 </project>

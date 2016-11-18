@@ -1,7 +1,6 @@
 package com.teegon.sdk;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.teegon.sdk.inter.MsgHandler;
 import com.teegon.sdk.pojo.Command;
 import com.teegon.sdk.pojo.ResponseMsg;
@@ -20,15 +19,17 @@ import jp.a840.websocket.handler.WebSocketHandler;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Date;
+import org.apache.log4j.Logger;
 
 /**
  * <p>teegon 客户端</p>
  */
 public class TeegonClient {
+    private static Logger logger = Logger.getLogger(TeegonClient.class);
+
     private Map<String, String> sysParams;//api请求系统级参数
     private String urlStr;//API请求URL
     private String appkey;//应用appkey
@@ -229,6 +230,8 @@ public class TeegonClient {
      * 组装请求参数
      */
     public String packProtocol(Command command) {
+
+
 //        System.out.println(command.toString());
         HashMap<String, String> vals = new HashMap<String, String>();
         vals.put("method", command.getCommand());

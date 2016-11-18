@@ -3,14 +3,18 @@ import com.teegon.sdk.util.URLParser;
 import com.teegon.sdk.util.WebUtils;
 import sun.misc.BASE64Encoder;
 import sun.misc.BASE64Decoder;
+import org.apache.log4j.Logger;
 
 
 /**
  * Created by uu on 16-11-16.
  */
 public class main {
+    private static Logger logger = Logger.getLogger(main.class);
 
     public static void main(String args[]) {
+
+        logger.info("========");
 
         String url = "http://192.168.10.73:8001/message/websocket";
 
