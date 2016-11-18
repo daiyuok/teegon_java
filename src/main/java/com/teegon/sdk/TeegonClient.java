@@ -107,11 +107,11 @@ public class TeegonClient {
                 + urlencode(mixPostParams) + Constant.SEPARATOR
                 + secret;
 
-        System.out.println("===========");
-
-        System.out.println(mixAllParams);
-
-        System.out.println("===========");
+//        System.out.println("===========");
+//
+//        System.out.println(mixAllParams);
+//
+//        System.out.println("===========");
 
         //加密签名
         try {
@@ -139,7 +139,7 @@ public class TeegonClient {
             String websocketUrl = urlParser.getWsUrl("");
             websocketUrl = websocketUrl + "?" + WebUtils.buildQuery(assembleParams(null, null, Constant.METHOD_GET, urlParser.getWsPath("")), Constant.DEFAULT_CHARSET);
 
-            System.out.println(websocketUrl);
+//            System.out.println(websocketUrl);
             webSocket = WebSockets.create(websocketUrl, new TeegonWebSocketHandler(), "char");
             webSocket.setBlockingMode(block_model);
             webSocket.connect();
@@ -169,7 +169,7 @@ public class TeegonClient {
      * 组装心跳信息数据
      */
     public String assembleHeatBeatsData() {
-        System.out.println("======assembleHeatBeatsData=========");
+//        System.out.println("======assembleHeatBeatsData=========");
         Command command = new Command(Constant.HeartBeatCmd, "", null);
         return packProtocol(command);
     }
@@ -229,7 +229,7 @@ public class TeegonClient {
      * 组装请求参数
      */
     public String packProtocol(Command command) {
-        System.out.println(command.toString());
+//        System.out.println(command.toString());
         HashMap<String, String> vals = new HashMap<String, String>();
         vals.put("method", command.getCommand());
         vals.put("app_key", appkey);

@@ -5,8 +5,6 @@ import jp.a840.websocket.WebSocket;
 import jp.a840.websocket.exception.WebSocketException;
 import org.junit.Test;
 
-import java.io.UnsupportedEncodingException;
-
 
 public class TeegonConsumeClientTest {
     String url = "http://192.168.10.73:8001/message/websocket";
