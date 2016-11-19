@@ -1,7 +1,6 @@
 package com.teegon.sdk.pojo;
 
 
-//{"ecode":0,"command":"messagenotify","result":{"num":1,"data":[{"group":"6w8m6yb","topic":"default","data":"||||||||||||||||||||||||||","message_id":12,"partition":6}]}}
 public class ResponseMsg {
     private String ecode;
     private String command;
