@@ -35,9 +35,5 @@
       </exclusions>
     </dependency>
   </dependencies>
-  <properties>
-    <org.springframework.version>3.1.2.RELEASE</org.springframework.version>
-    <jetty.version>7.6.0.RC5</jetty.version>
-  </properties>
 </project>
 

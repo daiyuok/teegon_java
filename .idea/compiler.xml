@@ -23,10 +23,12 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="teegon_java" />
+        <module name="websocket-client" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="teegon_java" target="1.5" />
+      <module name="websocket-client" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

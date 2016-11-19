@@ -1,0 +1,6 @@
+#配置文件
+*.iml
+
+#过滤文件夹idea
+.idea/*
+.target/*
