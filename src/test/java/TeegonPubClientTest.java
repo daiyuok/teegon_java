@@ -15,6 +15,7 @@ public class TeegonPubClientTest {
 
     Boolean block_model = false;
 
+
     @Test
     public void websocketConnect() {
         final TeegonClient teegonClient = new TeegonClient(url, appkey, secret, block_model);

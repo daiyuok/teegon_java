@@ -46,7 +46,8 @@ public abstract class WebUtils {
             throws IOException {
         String ctype = "application/x-www-form-urlencoded;charset=" + charset;
         String query = buildQuery(params, charset);
-//        System.out.println(params);
+        System.out.println(headers);
+        System.out.println(params);
         byte[] content = {};
         if (query != null) {
             content = query.getBytes(charset);

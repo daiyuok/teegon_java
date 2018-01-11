@@ -10,6 +10,7 @@ import com.teegon.sdk.util.Base64;
 import com.teegon.sdk.util.SignTools;
 import com.teegon.sdk.util.URLParser;
 import com.teegon.sdk.util.WebUtils;
+import com.teegon.sdk.Constant;
 import jp.a840.websocket.WebSocket;
 import jp.a840.websocket.WebSockets;
 import jp.a840.websocket.exception.WebSocketException;
@@ -18,10 +19,12 @@ import jp.a840.websocket.handler.WebSocketHandler;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Date;
+
 
 import org.apache.log4j.Logger;
 
@@ -62,6 +65,29 @@ public class TeegonClient {
         sysParams.put("method", method);//secret
         sysParams.put("sign_time", String.valueOf(new Date().getTime() / 1000));
     }
+
+    /**
+     * 执行api post请求
+     *
+     * @param appParams 应用级参数
+     * @return
+     * @throws IOException
+     */
+    public String doPost(Map<String, String> appParams) throws IOException {
+        String postUrlStr = urlParser.getSiteWithAppendPath("");
+        return WebUtils.doPost(postUrlStr, assembleParams(getHeaders(), appParams, Constant.METHOD_POST, new URL(postUrlStr).getPath()), getHeaders(), 5000, 5000);
+    }
+
+
+    /**
+     * 设置HTTP header
+     */
+    private Map<String, String> getHeaders() {
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put("User-Agent", "TeegonSDK/JAVA");
+        return headers;
+    }
+
 
     /**
      * 组装所有请求参数
@@ -110,6 +136,7 @@ public class TeegonClient {
                 + secret;
 
         logger.debug("sing_str is " + mixAllParams);
+
 
         //加密签名
         try {
