@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.teegon</groupId>
-    <artifactId>teegon-sdk</artifactId>
+    <artifactId>teegon_java</artifactId>
     <version>1.0</version>
 
     <dependencies>
