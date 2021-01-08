@@ -10,16 +10,15 @@ public class TeegonPostTest {
 
     public static void main(String[] args) {
 
-        String url = "http://api.teegon.com/router";
-        String appkey = "XX";
-        String secret = "xx";
+        String url = "http://apigateway.shopex.cn/router";
+        String appkey = "";
+        String secret = "";
         String method = "shopex.queue.read";
 
         TeegonClient teegonClient = new TeegonClient(url, appkey, secret, Boolean.FALSE);
         Map<String, String> appParams = new HashMap<String, String>();
         appParams.put("method", method);
         appParams.put("topic", "orders");
-        appParams.put("drop", "false");
         appParams.put("num", "1");
         try {
             String apiResult = teegonClient.doPost(appParams);
